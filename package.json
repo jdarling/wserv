@@ -1,0 +1,15 @@
+{
+  "name": "wserv",
+  "version": "0.0.1",
+  "description": "A light weight static webserver for testing pages and shims locally.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Darling <jeremy.darling@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "connect": "~2.12.0",
+    "commander": "~2.1.0"
+  }
+}
