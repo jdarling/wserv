@@ -24,5 +24,5 @@ Options
 -h, --help          output usage information
 -v, --version       output the version number
 -p, --port <int>    Set port to serve on, default 8080
--f, --folder <int>  Set directory to serve from, default C:\node projects
+-f, --folder <int>  Set directory to serve from, default <Current Folder>
 ```
