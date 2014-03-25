@@ -54,14 +54,6 @@ var startServer = function(env){
       webport = cjson.port||pjson.port||8080
       ;
 
-  if(cjson.name){
-    process.title += ' - ' + cjson.name;
-  }else if(env.configPath){
-    process.title += ' - ' + truncto(env.configPath, 20);
-  }else{
-    process.title += ' - ' + truncto(path.resolve('./'), 20);
-  }
-
   settings
     .version('v'+pjson.version, '-v, --version')
     .option('-p, --port <int>', 'Set port to serve on, default '+webport, parseInt)
@@ -92,6 +84,12 @@ var startServer = function(env){
 
   if(settings.folder){
     webroot = path.resolve('./', settings.folder);
+  }
+
+  if(cjson.name){
+    process.title += ' - ' + cjson.name;
+  }else{
+    process.title += ' - ' + truncto(webroot, 20);
   }
 
   server

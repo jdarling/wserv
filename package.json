@@ -1,6 +1,6 @@
 {
   "name": "wserv",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A light weight static webserver for testing pages and shims locally.",
   "main": "server.js",
   "scripts": {
