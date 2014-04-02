@@ -15,6 +15,8 @@ var
     settings = require('commander'),
     connect = require('connect'),
     http = require('http'),
+    httpProxy = require('http-proxy'),
+    proxy = httpProxy.createProxyServer(),
     server = connect()
     ;
 
@@ -32,7 +34,21 @@ var truncto = function(fn, len){
   }
   return result;
 };
-    
+
+var isProxyAPI = /^\/api\/proxy/;
+var proxyApi = function(req, res, next){
+  var match = isProxyAPI.exec(req.url);
+  if(match){
+    var target = req.url.split('?to=');
+    target.shift();
+    target = target.join('?to=');
+    req.url = target;
+    proxy.web(req, res, {target: target});
+  }else{
+    next();
+  }
+};
+
 var startServer = function(env){
     var
       pjson = require(__dirname+'/package.json'),
@@ -96,6 +112,7 @@ var startServer = function(env){
     .use(connect.favicon())
     .use(connect.directory(webroot))
     .use(connect.static(webroot))
+    .use(proxyApi)
     .use(connect.logger('dev'))
     ;
 
